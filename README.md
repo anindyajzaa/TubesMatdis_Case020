@@ -7,13 +7,13 @@ Case 20: Kepulan asap pembakaran sate tebal mengganggu visibilitas
 
 | No | Nama | NIM |
 |---|---|---|
-| 1 | [Anindya Jauzaa Rusyana] | [251524001] |
-| 2 | [Hana Mardhiyyah] | [251524011] |
-| 3 | [Luthfiah Nurazizah] | [251524020] |
-| 4 | [Rizni Febrianty Surya Putri] | [251524029] |
+| 1 | Anindya Jauzaa Rusyana | 251524001 |
+| 2 | Hana Mardhiyyah | 251524011 |
+| 3 | Luthfiah Nurazizah | 251524020 |
+| 4 | Rizni Febrianty Surya Putri | 251524029 |
 
-Kelas: [2A-D4]  
-Dosen Pengampu: [Trisna Gelar, S.T., M.Kom.]
+Kelas: 2A-D4  
+Dosen Pengampu: Trisna Gelar, S.T., M.Kom.
 
 ---
 
