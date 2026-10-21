@@ -50,7 +50,7 @@ Catatan: berita ini menyoroti gangguan asap terhadap pengunjung dan toko di kawa
 Masalah dimodelkan sebagai graf sederhana tak berarah G = (V, E):
 
 - **Simpul (V):** setiap pedagang sate (titik lapak).
-- **Sisi (E):** dua pedagang dihubungkan jika jaraknya cukup dekat sehingga asapnya bertemu dan menumpuk. Batas jarak yang dipakai adalah asumsi kelompok, yaitu [isi, misalnya 5 meter].
+- **Sisi (E):** dua pedagang dihubungkan jika jaraknya cukup dekat sehingga asapnya bertemu dan menumpuk.
 - **Warna:** slot waktu berjualan atau zona penempatan.
 
 Aturan pewarnaan: dua simpul yang bertetangga tidak boleh memiliki warna yang sama. Artinya, dua pedagang yang asapnya saling bertumpuk tidak boleh membakar sate pada slot waktu atau zona yang sama.
