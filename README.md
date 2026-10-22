@@ -73,7 +73,6 @@ Jumlah tiga slot adalah yang paling sedikit, karena adanya segitiga (tiga pedaga
 
 - Jika semua pedagang berdempetan satu sama lain (graf lengkap), jumlah slot yang dibutuhkan sama dengan jumlah pedagang. Ini kondisi terburuk, mirip deretan lapak rapat di kawasan ramai.
 - Pedagang yang berjauhan bisa berjualan bersamaan di slot yang sama, sehingga pembagian slot tidak harus mengurangi waktu berjualan secara drastis.
-- Algoritma Welsh-Powell bersifat greedy, jadi hasilnya tidak selalu minimum untuk graf yang lebih besar, tetapi memberikan solusi yang cukup baik dan mudah dihitung.
 
 ## Keterbatasan Model
 
