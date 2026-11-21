@@ -1,55 +1,65 @@
 case_id: "case_20_asap_sate"
-title: "Pengaturan Arus Evakuasi: Asap Tebal Pembakaran Sate di Persimpangan"
-description: "Skenario N=5 berbasis Graph Coloring / Conflict Scheduling. Kepulan asap tebal pembakaran sate di persimpangan lorong mengganggu visibilitas, menuntut alokasi slot waktu (color/time-slot) agar gelombang evakuasi melintas secara bertahap."
+title: "Pengaturan Giliran Evakuasi: Asap Sate di Kawasan Malioboro"
+description: "Graph Coloring / Conflict Scheduling. Node = titik di sekitar Malioboro, warna = time-slot giliran pelepasan gelombang pengunjung. Dua titik yang terhubung jalan tidak boleh satu slot. Bobot edge = jarak jalan (meter). Event: asap sate menutup visibilitas di satu titik dan menyebar sejauh radius tertentu."
 
+# pos = koordinat gambar / 10 (y dibalik supaya tegak di matplotlib), dipakai juga oleh web.
 nodes:
-  - id: 0
-    label: "Titik Kumpul Lobi Kantin (Start)"
-    pos: [0.0, 0.0]
-  - id: 1
-    label: "Persimpangan Asap Sate A"
-    pos: [5.0, 5.0]
-  - id: 2
-    label: "Persimpangan Asap Sate B"
-    pos: [5.0, -5.0]
-  - id: 3
-    label: "Simpul Koridor Luar"
-    pos: [10.0, 0.0]
-  - id: 4
-    label: "Zona Aman Halaman Terbuka (Goal)"
-    pos: [15.0, 0.0]
+  - {id: 0, label: "Kawasan Wisata Malioboro", pos: [13.7, 56.4]}
+  - {id: 1, label: "Jl. Remujung", pos: [25.1, 55.7]}
+  - {id: 2, label: "Kebaya Bu Pur", pos: [46.9, 55.2]}
+  - {id: 3, label: "Jl. Mayor Suryotomo", pos: [65.7, 54.8]}
+  - {id: 4, label: "Pasar BeringHarjo", pos: [53.5, 50.2]}
+  - {id: 5, label: "Pasar Tradisional BeringHarjo", pos: [22.6, 46.3]}
+  - {id: 6, label: "Jl. BeringHarjo", pos: [34.6, 47.9]}
+  - {id: 7, label: "Teras Malioboro 1", pos: [14.3, 45.0]}
+  - {id: 8, label: "Hamzah Batik", pos: [14.3, 39.6]}
+  - {id: 9, label: "Pasar Sore Malioboro", pos: [27.3, 41.3]}
+  - {id: 10, label: "Jl. Pabringan", pos: [56.2, 41.3]}
+  - {id: 11, label: "Jl. Mojar", pos: [56.6, 31.0]}
+  - {id: 12, label: "Taman Budaya Yogyakarta", pos: [35.8, 25.5]}
+  - {id: 13, label: "Jl. Margo Mulyo", pos: [14.8, 23.9]}
+  - {id: 14, label: "Museum Benteng Vredeburg", pos: [22.0, 23.8]}
+  - {id: 15, label: "Jl. Sriwedani", pos: [46.3, 20.3]}
+  - {id: 16, label: "Jl. Tilarso", pos: [57.0, 21.5]}
+  - {id: 17, label: "Jl. Limaran", pos: [57.0, 14.2]}
+  - {id: 18, label: "Titik Nol Kilometer Yogyakarta", pos: [15.9, 10.8]}
+  - {id: 19, label: "Jl. Panembahan Senopati", pos: [67.7, 7.4]}
 
+# weight = jarak (meter) dari tabel. Coloring tidak peduli arah edge.
+# Arah di sini hanya supaya test bawaan Dijkstra punya rute 0 -> 19.
 edges:
-  - from: 0
-    to: 1
-    weight: 1.0
-    capacity: 10.0
-  - from: 0
-    to: 2
-    weight: 1.0
-    capacity: 10.0
-  - from: 1
-    to: 2
-    weight: 1.0
-    capacity: 5.0
-  - from: 1
-    to: 3
-    weight: 1.0
-    capacity: 10.0
-  - from: 2
-    to: 3
-    weight: 1.0
-    capacity: 10.0
-  - from: 3
-    to: 4
-    weight: 1.0
-    capacity: 15.0
+  - {from: 0, to: 7, weight: 80.0}     # Kawasan Wisata Malioboro - Teras Malioboro 1
+  - {from: 0, to: 1, weight: 91.0}     # Kawasan Wisata Malioboro - Jl. Remujung
+  - {from: 1, to: 2, weight: 250.0}    # Jl. Remujung - Kebaya Bu Pur
+  - {from: 2, to: 3, weight: 170.0}    # Kebaya Bu Pur - Jl. Mayor Suryotomo
+  - {from: 3, to: 10, weight: 300.0}   # Jl. Mayor Suryotomo - Jl. Pabringan
+  - {from: 3, to: 11, weight: 100.0}   # Jl. Mayor Suryotomo - Jl. Mojar
+  - {from: 3, to: 16, weight: 200.0}   # Jl. Mayor Suryotomo - Jl. Tilarso
+  - {from: 3, to: 17, weight: 200.0}   # Jl. Mayor Suryotomo - Jl. Limaran
+  - {from: 17, to: 19, weight: 130.0}  # Jl. Limaran - Jl. Panembahan Senopati
+  - {from: 19, to: 16, weight: 210.0}  # Jl. Panembahan Senopati - Jl. Tilarso
+  - {from: 19, to: 11, weight: 230.0}  # Jl. Panembahan Senopati - Jl. Mojar
+  - {from: 19, to: 10, weight: 450.0}  # Jl. Panembahan Senopati - Jl. Pabringan
+  - {from: 19, to: 15, weight: 190.0}  # Jl. Panembahan Senopati - Jl. Sriwedani
+  - {from: 19, to: 18, weight: 450.0}  # Jl. Panembahan Senopati - Titik Nol Kilometer Yogyakarta
+  - {from: 18, to: 15, weight: 450.0}  # Titik Nol Kilometer Yogyakarta - Jl. Sriwedani
+  - {from: 18, to: 13, weight: 300.0}  # Titik Nol Kilometer Yogyakarta - Jl. Margo Mulyo
+  - {from: 13, to: 14, weight: 260.0}  # Jl. Margo Mulyo - Museum Benteng Vredeburg
+  - {from: 13, to: 8, weight: 38.0}    # Jl. Margo Mulyo - Hamzah Batik
+  - {from: 8, to: 9, weight: 170.0}    # Hamzah Batik - Pasar Sore Malioboro
+  - {from: 8, to: 7, weight: 29.0}     # Hamzah Batik - Teras Malioboro 1
+  - {from: 9, to: 6, weight: 89.0}     # Pasar Sore Malioboro - Jl. BeringHarjo
+  - {from: 9, to: 10, weight: 110.0}   # Pasar Sore Malioboro - Jl. Pabringan
+  - {from: 9, to: 12, weight: 350.0}   # Pasar Sore Malioboro - Taman Budaya Yogyakarta
+  - {from: 10, to: 12, weight: 230.0}  # Jl. Pabringan - Taman Budaya Yogyakarta
+  - {from: 10, to: 6, weight: 84.0}    # Jl. Pabringan - Jl. BeringHarjo
 
 execution_plan:
-  start_node: 0
-  goal_node: 4
+  start_node: 0      # hanya untuk test bawaan template (Dijkstra)
+  goal_node: 19
   events:
     - step: 1
       type: "CONFLICT_NODE_TRIGGER"
-      target_node: 1
-      description: "Kepulan asap sate tebal menutup visibilitas di Persimpangan A (Node 1)! Membutuhkan penjadwalan alokasi time-slot (coloring) agar pejalan kaki melintas bergantian secara aman."
+      target_node: 9         # lokasi asap = Pasar Sore Malioboro (ID node), ganti sesuka hati
+      smoke_radius_m: 300    # asap menyebar sejauh ini (meter) lewat jalan
+      description: "Kepulan asap sate tebal menutup visibilitas di Pasar Sore Malioboro! Titik dalam jangkauan asap ikut berisiko bentrok, jadi slot-nya dihitung ulang."
