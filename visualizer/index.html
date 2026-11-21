@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Case 20 - Pewarnaan Graf Asap Sate Malioboro</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <header>
+    <h1 id="judul">Memuat data...</h1>
+    <p id="deskripsi" class="muted"></p>
+    <p id="info-event" class="event"></p>
+  </header>
+
+  <!-- Kontrol pemutaran: dipakai bersama oleh kedua graf -->
+  <section class="controls" aria-label="Kontrol pemutaran">
+    <button id="btn-awal" title="Kembali ke langkah pertama">⏮ Awal</button>
+    <button id="btn-prev">◀ Mundur</button>
+    <button id="btn-play" class="primary">▶ Putar</button>
+    <button id="btn-next">Maju ▶</button>
+    <button id="btn-event" title="Loncat ke saat asap muncul">⚡ Ke asap</button>
+    <input id="slider" type="range" min="0" max="0" value="0" aria-label="Posisi langkah">
+    <span id="step-info" class="muted">Langkah 1</span>
+    <label class="muted">Kecepatan
+      <select id="speed">
+        <option value="0.5">0.5×</option>
+        <option value="1" selected>1×</option>
+        <option value="2">2×</option>
+      </select>
+    </label>
+  </section>
+
+  <section id="legend" class="legend" aria-label="Keterangan"></section>
+
+  <!-- Dua panel graf (Greedy & DSATUR) dibuat oleh replayer-engine.js -->
+  <main id="panels" class="panels"></main>
+
+  <!-- Tabel perbandingan dibuat oleh entropy-dashboard.js -->
+  <section id="dashboard" class="dashboard"></section>
+
+  <footer class="muted">
+    Data dari <code>python -m scripts.run_coloring</code> &middot; Tubes Matematika Diskrit Lanjut, Case 20
+  </footer>
+
+  <script src="assets/js/trace-data.js"></script>
+  <script src="assets/js/replayer-engine.js"></script>
+  <script src="assets/js/entropy-dashboard.js"></script>
+</body>
+</html>
