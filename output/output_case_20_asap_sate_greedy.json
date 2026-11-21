@@ -1,0 +1,1348 @@
+{
+  "metadata": {
+    "case_id": "case_20_asap_sate",
+    "title": "Pengaturan Giliran Evakuasi: Asap Sate di Kawasan Malioboro",
+    "description": "Graph Coloring / Conflict Scheduling. Node = titik di sekitar Malioboro, warna = time-slot giliran pelepasan gelombang pengunjung. Dua titik yang terhubung jalan tidak boleh satu slot. Bobot edge = jarak jalan (meter). Event: asap sate menutup visibilitas di satu titik dan menyebar sejauh radius tertentu.",
+    "algorithm": "GreedyColoring"
+  },
+  "total_steps": 27,
+  "initial_topology": {
+    "nodes": [
+      {
+        "id": 0,
+        "label": "Kawasan Wisata Malioboro",
+        "pos": [
+          13.7,
+          56.4
+        ]
+      },
+      {
+        "id": 1,
+        "label": "Jl. Remujung",
+        "pos": [
+          25.1,
+          55.7
+        ]
+      },
+      {
+        "id": 2,
+        "label": "Kebaya Bu Pur",
+        "pos": [
+          46.9,
+          55.2
+        ]
+      },
+      {
+        "id": 3,
+        "label": "Jl. Mayor Suryotomo",
+        "pos": [
+          65.7,
+          54.8
+        ]
+      },
+      {
+        "id": 4,
+        "label": "Pasar BeringHarjo",
+        "pos": [
+          53.5,
+          50.2
+        ]
+      },
+      {
+        "id": 5,
+        "label": "Pasar Tradisional BeringHarjo",
+        "pos": [
+          22.6,
+          46.3
+        ]
+      },
+      {
+        "id": 6,
+        "label": "Jl. BeringHarjo",
+        "pos": [
+          34.6,
+          47.9
+        ]
+      },
+      {
+        "id": 7,
+        "label": "Teras Malioboro 1",
+        "pos": [
+          14.3,
+          45.0
+        ]
+      },
+      {
+        "id": 8,
+        "label": "Hamzah Batik",
+        "pos": [
+          14.3,
+          39.6
+        ]
+      },
+      {
+        "id": 9,
+        "label": "Pasar Sore Malioboro",
+        "pos": [
+          27.3,
+          41.3
+        ]
+      },
+      {
+        "id": 10,
+        "label": "Jl. Pabringan",
+        "pos": [
+          56.2,
+          41.3
+        ]
+      },
+      {
+        "id": 11,
+        "label": "Jl. Mojar",
+        "pos": [
+          56.6,
+          31.0
+        ]
+      },
+      {
+        "id": 12,
+        "label": "Taman Budaya Yogyakarta",
+        "pos": [
+          35.8,
+          25.5
+        ]
+      },
+      {
+        "id": 13,
+        "label": "Jl. Margo Mulyo",
+        "pos": [
+          14.8,
+          23.9
+        ]
+      },
+      {
+        "id": 14,
+        "label": "Museum Benteng Vredeburg",
+        "pos": [
+          22.0,
+          23.8
+        ]
+      },
+      {
+        "id": 15,
+        "label": "Jl. Sriwedani",
+        "pos": [
+          46.3,
+          20.3
+        ]
+      },
+      {
+        "id": 16,
+        "label": "Jl. Tilarso",
+        "pos": [
+          57.0,
+          21.5
+        ]
+      },
+      {
+        "id": 17,
+        "label": "Jl. Limaran",
+        "pos": [
+          57.0,
+          14.2
+        ]
+      },
+      {
+        "id": 18,
+        "label": "Titik Nol Kilometer Yogyakarta",
+        "pos": [
+          15.9,
+          10.8
+        ]
+      },
+      {
+        "id": 19,
+        "label": "Jl. Panembahan Senopati",
+        "pos": [
+          67.7,
+          7.4
+        ]
+      }
+    ],
+    "edges": [
+      {
+        "from": 0,
+        "to": 7,
+        "weight": 80.0
+      },
+      {
+        "from": 0,
+        "to": 1,
+        "weight": 91.0
+      },
+      {
+        "from": 1,
+        "to": 2,
+        "weight": 250.0
+      },
+      {
+        "from": 2,
+        "to": 3,
+        "weight": 170.0
+      },
+      {
+        "from": 3,
+        "to": 10,
+        "weight": 300.0
+      },
+      {
+        "from": 3,
+        "to": 11,
+        "weight": 100.0
+      },
+      {
+        "from": 3,
+        "to": 16,
+        "weight": 200.0
+      },
+      {
+        "from": 3,
+        "to": 17,
+        "weight": 200.0
+      },
+      {
+        "from": 8,
+        "to": 9,
+        "weight": 170.0
+      },
+      {
+        "from": 8,
+        "to": 7,
+        "weight": 29.0
+      },
+      {
+        "from": 9,
+        "to": 6,
+        "weight": 89.0
+      },
+      {
+        "from": 9,
+        "to": 10,
+        "weight": 110.0
+      },
+      {
+        "from": 9,
+        "to": 12,
+        "weight": 350.0
+      },
+      {
+        "from": 10,
+        "to": 12,
+        "weight": 230.0
+      },
+      {
+        "from": 10,
+        "to": 6,
+        "weight": 84.0
+      },
+      {
+        "from": 13,
+        "to": 14,
+        "weight": 260.0
+      },
+      {
+        "from": 13,
+        "to": 8,
+        "weight": 38.0
+      },
+      {
+        "from": 17,
+        "to": 19,
+        "weight": 130.0
+      },
+      {
+        "from": 18,
+        "to": 15,
+        "weight": 450.0
+      },
+      {
+        "from": 18,
+        "to": 13,
+        "weight": 300.0
+      },
+      {
+        "from": 19,
+        "to": 16,
+        "weight": 210.0
+      },
+      {
+        "from": 19,
+        "to": 11,
+        "weight": 230.0
+      },
+      {
+        "from": 19,
+        "to": 10,
+        "weight": 450.0
+      },
+      {
+        "from": 19,
+        "to": 15,
+        "weight": 190.0
+      },
+      {
+        "from": 19,
+        "to": 18,
+        "weight": 450.0
+      }
+    ]
+  },
+  "raw_quantitative_trace": [
+    {
+      "step": 1,
+      "event_type": "INITIALIZATION",
+      "mutations": {
+        "phase": "awal",
+        "action_narrative": "Mulai Greedy: 20 titik dan 25 jalan, semua titik belum punya slot.",
+        "colors": {
+          "0": null,
+          "1": null,
+          "2": null,
+          "3": null,
+          "4": null,
+          "5": null,
+          "6": null,
+          "7": null,
+          "8": null,
+          "9": null,
+          "10": null,
+          "11": null,
+          "12": null,
+          "13": null,
+          "14": null,
+          "15": null,
+          "16": null,
+          "17": null,
+          "18": null,
+          "19": null
+        },
+        "conflict_edges": [],
+        "total_nodes": 20,
+        "total_edges": 25
+      }
+    },
+    {
+      "step": 2,
+      "event_type": "COLOR_ASSIGNED",
+      "mutations": {
+        "phase": "awal",
+        "action_narrative": "Kawasan Wisata Malioboro dapat Slot 1. Slot yang sudah dipakai tetangganya: belum ada.",
+        "colors": {
+          "0": 0,
+          "1": null,
+          "2": null,
+          "3": null,
+          "4": null,
+          "5": null,
+          "6": null,
+          "7": null,
+          "8": null,
+          "9": null,
+          "10": null,
+          "11": null,
+          "12": null,
+          "13": null,
+          "14": null,
+          "15": null,
+          "16": null,
+          "17": null,
+          "18": null,
+          "19": null
+        },
+        "conflict_edges": [],
+        "current_node": 0,
+        "assigned_color": 0,
+        "neighbor_colors": []
+      }
+    },
+    {
+      "step": 3,
+      "event_type": "COLOR_ASSIGNED",
+      "mutations": {
+        "phase": "awal",
+        "action_narrative": "Jl. Remujung dapat Slot 2. Slot yang sudah dipakai tetangganya: Slot 1.",
+        "colors": {
+          "0": 0,
+          "1": 1,
+          "2": null,
+          "3": null,
+          "4": null,
+          "5": null,
+          "6": null,
+          "7": null,
+          "8": null,
+          "9": null,
+          "10": null,
+          "11": null,
+          "12": null,
+          "13": null,
+          "14": null,
+          "15": null,
+          "16": null,
+          "17": null,
+          "18": null,
+          "19": null
+        },
+        "conflict_edges": [],
+        "current_node": 1,
+        "assigned_color": 1,
+        "neighbor_colors": [
+          0
+        ]
+      }
+    },
+    {
+      "step": 4,
+      "event_type": "COLOR_ASSIGNED",
+      "mutations": {
+        "phase": "awal",
+        "action_narrative": "Kebaya Bu Pur dapat Slot 1. Slot yang sudah dipakai tetangganya: Slot 2.",
+        "colors": {
+          "0": 0,
+          "1": 1,
+          "2": 0,
+          "3": null,
+          "4": null,
+          "5": null,
+          "6": null,
+          "7": null,
+          "8": null,
+          "9": null,
+          "10": null,
+          "11": null,
+          "12": null,
+          "13": null,
+          "14": null,
+          "15": null,
+          "16": null,
+          "17": null,
+          "18": null,
+          "19": null
+        },
+        "conflict_edges": [],
+        "current_node": 2,
+        "assigned_color": 0,
+        "neighbor_colors": [
+          1
+        ]
+      }
+    },
+    {
+      "step": 5,
+      "event_type": "COLOR_ASSIGNED",
+      "mutations": {
+        "phase": "awal",
+        "action_narrative": "Jl. Mayor Suryotomo dapat Slot 2. Slot yang sudah dipakai tetangganya: Slot 1.",
+        "colors": {
+          "0": 0,
+          "1": 1,
+          "2": 0,
+          "3": 1,
+          "4": null,
+          "5": null,
+          "6": null,
+          "7": null,
+          "8": null,
+          "9": null,
+          "10": null,
+          "11": null,
+          "12": null,
+          "13": null,
+          "14": null,
+          "15": null,
+          "16": null,
+          "17": null,
+          "18": null,
+          "19": null
+        },
+        "conflict_edges": [],
+        "current_node": 3,
+        "assigned_color": 1,
+        "neighbor_colors": [
+          0
+        ]
+      }
+    },
+    {
+      "step": 6,
+      "event_type": "COLOR_ASSIGNED",
+      "mutations": {
+        "phase": "awal",
+        "action_narrative": "Pasar BeringHarjo dapat Slot 1. Slot yang sudah dipakai tetangganya: belum ada.",
+        "colors": {
+          "0": 0,
+          "1": 1,
+          "2": 0,
+          "3": 1,
+          "4": 0,
+          "5": null,
+          "6": null,
+          "7": null,
+          "8": null,
+          "9": null,
+          "10": null,
+          "11": null,
+          "12": null,
+          "13": null,
+          "14": null,
+          "15": null,
+          "16": null,
+          "17": null,
+          "18": null,
+          "19": null
+        },
+        "conflict_edges": [],
+        "current_node": 4,
+        "assigned_color": 0,
+        "neighbor_colors": []
+      }
+    },
+    {
+      "step": 7,
+      "event_type": "COLOR_ASSIGNED",
+      "mutations": {
+        "phase": "awal",
+        "action_narrative": "Pasar Tradisional BeringHarjo dapat Slot 1. Slot yang sudah dipakai tetangganya: belum ada.",
+        "colors": {
+          "0": 0,
+          "1": 1,
+          "2": 0,
+          "3": 1,
+          "4": 0,
+          "5": 0,
+          "6": null,
+          "7": null,
+          "8": null,
+          "9": null,
+          "10": null,
+          "11": null,
+          "12": null,
+          "13": null,
+          "14": null,
+          "15": null,
+          "16": null,
+          "17": null,
+          "18": null,
+          "19": null
+        },
+        "conflict_edges": [],
+        "current_node": 5,
+        "assigned_color": 0,
+        "neighbor_colors": []
+      }
+    },
+    {
+      "step": 8,
+      "event_type": "COLOR_ASSIGNED",
+      "mutations": {
+        "phase": "awal",
+        "action_narrative": "Jl. BeringHarjo dapat Slot 1. Slot yang sudah dipakai tetangganya: belum ada.",
+        "colors": {
+          "0": 0,
+          "1": 1,
+          "2": 0,
+          "3": 1,
+          "4": 0,
+          "5": 0,
+          "6": 0,
+          "7": null,
+          "8": null,
+          "9": null,
+          "10": null,
+          "11": null,
+          "12": null,
+          "13": null,
+          "14": null,
+          "15": null,
+          "16": null,
+          "17": null,
+          "18": null,
+          "19": null
+        },
+        "conflict_edges": [],
+        "current_node": 6,
+        "assigned_color": 0,
+        "neighbor_colors": []
+      }
+    },
+    {
+      "step": 9,
+      "event_type": "COLOR_ASSIGNED",
+      "mutations": {
+        "phase": "awal",
+        "action_narrative": "Teras Malioboro 1 dapat Slot 2. Slot yang sudah dipakai tetangganya: Slot 1.",
+        "colors": {
+          "0": 0,
+          "1": 1,
+          "2": 0,
+          "3": 1,
+          "4": 0,
+          "5": 0,
+          "6": 0,
+          "7": 1,
+          "8": null,
+          "9": null,
+          "10": null,
+          "11": null,
+          "12": null,
+          "13": null,
+          "14": null,
+          "15": null,
+          "16": null,
+          "17": null,
+          "18": null,
+          "19": null
+        },
+        "conflict_edges": [],
+        "current_node": 7,
+        "assigned_color": 1,
+        "neighbor_colors": [
+          0
+        ]
+      }
+    },
+    {
+      "step": 10,
+      "event_type": "COLOR_ASSIGNED",
+      "mutations": {
+        "phase": "awal",
+        "action_narrative": "Hamzah Batik dapat Slot 1. Slot yang sudah dipakai tetangganya: Slot 2.",
+        "colors": {
+          "0": 0,
+          "1": 1,
+          "2": 0,
+          "3": 1,
+          "4": 0,
+          "5": 0,
+          "6": 0,
+          "7": 1,
+          "8": 0,
+          "9": null,
+          "10": null,
+          "11": null,
+          "12": null,
+          "13": null,
+          "14": null,
+          "15": null,
+          "16": null,
+          "17": null,
+          "18": null,
+          "19": null
+        },
+        "conflict_edges": [],
+        "current_node": 8,
+        "assigned_color": 0,
+        "neighbor_colors": [
+          1
+        ]
+      }
+    },
+    {
+      "step": 11,
+      "event_type": "COLOR_ASSIGNED",
+      "mutations": {
+        "phase": "awal",
+        "action_narrative": "Pasar Sore Malioboro dapat Slot 2. Slot yang sudah dipakai tetangganya: Slot 1.",
+        "colors": {
+          "0": 0,
+          "1": 1,
+          "2": 0,
+          "3": 1,
+          "4": 0,
+          "5": 0,
+          "6": 0,
+          "7": 1,
+          "8": 0,
+          "9": 1,
+          "10": null,
+          "11": null,
+          "12": null,
+          "13": null,
+          "14": null,
+          "15": null,
+          "16": null,
+          "17": null,
+          "18": null,
+          "19": null
+        },
+        "conflict_edges": [],
+        "current_node": 9,
+        "assigned_color": 1,
+        "neighbor_colors": [
+          0
+        ]
+      }
+    },
+    {
+      "step": 12,
+      "event_type": "COLOR_ASSIGNED",
+      "mutations": {
+        "phase": "awal",
+        "action_narrative": "Jl. Pabringan dapat Slot 3. Slot yang sudah dipakai tetangganya: Slot 1, Slot 2.",
+        "colors": {
+          "0": 0,
+          "1": 1,
+          "2": 0,
+          "3": 1,
+          "4": 0,
+          "5": 0,
+          "6": 0,
+          "7": 1,
+          "8": 0,
+          "9": 1,
+          "10": 2,
+          "11": null,
+          "12": null,
+          "13": null,
+          "14": null,
+          "15": null,
+          "16": null,
+          "17": null,
+          "18": null,
+          "19": null
+        },
+        "conflict_edges": [],
+        "current_node": 10,
+        "assigned_color": 2,
+        "neighbor_colors": [
+          0,
+          1
+        ]
+      }
+    },
+    {
+      "step": 13,
+      "event_type": "COLOR_ASSIGNED",
+      "mutations": {
+        "phase": "awal",
+        "action_narrative": "Jl. Mojar dapat Slot 1. Slot yang sudah dipakai tetangganya: Slot 2.",
+        "colors": {
+          "0": 0,
+          "1": 1,
+          "2": 0,
+          "3": 1,
+          "4": 0,
+          "5": 0,
+          "6": 0,
+          "7": 1,
+          "8": 0,
+          "9": 1,
+          "10": 2,
+          "11": 0,
+          "12": null,
+          "13": null,
+          "14": null,
+          "15": null,
+          "16": null,
+          "17": null,
+          "18": null,
+          "19": null
+        },
+        "conflict_edges": [],
+        "current_node": 11,
+        "assigned_color": 0,
+        "neighbor_colors": [
+          1
+        ]
+      }
+    },
+    {
+      "step": 14,
+      "event_type": "COLOR_ASSIGNED",
+      "mutations": {
+        "phase": "awal",
+        "action_narrative": "Taman Budaya Yogyakarta dapat Slot 1. Slot yang sudah dipakai tetangganya: Slot 2, Slot 3.",
+        "colors": {
+          "0": 0,
+          "1": 1,
+          "2": 0,
+          "3": 1,
+          "4": 0,
+          "5": 0,
+          "6": 0,
+          "7": 1,
+          "8": 0,
+          "9": 1,
+          "10": 2,
+          "11": 0,
+          "12": 0,
+          "13": null,
+          "14": null,
+          "15": null,
+          "16": null,
+          "17": null,
+          "18": null,
+          "19": null
+        },
+        "conflict_edges": [],
+        "current_node": 12,
+        "assigned_color": 0,
+        "neighbor_colors": [
+          1,
+          2
+        ]
+      }
+    },
+    {
+      "step": 15,
+      "event_type": "COLOR_ASSIGNED",
+      "mutations": {
+        "phase": "awal",
+        "action_narrative": "Jl. Margo Mulyo dapat Slot 2. Slot yang sudah dipakai tetangganya: Slot 1.",
+        "colors": {
+          "0": 0,
+          "1": 1,
+          "2": 0,
+          "3": 1,
+          "4": 0,
+          "5": 0,
+          "6": 0,
+          "7": 1,
+          "8": 0,
+          "9": 1,
+          "10": 2,
+          "11": 0,
+          "12": 0,
+          "13": 1,
+          "14": null,
+          "15": null,
+          "16": null,
+          "17": null,
+          "18": null,
+          "19": null
+        },
+        "conflict_edges": [],
+        "current_node": 13,
+        "assigned_color": 1,
+        "neighbor_colors": [
+          0
+        ]
+      }
+    },
+    {
+      "step": 16,
+      "event_type": "COLOR_ASSIGNED",
+      "mutations": {
+        "phase": "awal",
+        "action_narrative": "Museum Benteng Vredeburg dapat Slot 1. Slot yang sudah dipakai tetangganya: Slot 2.",
+        "colors": {
+          "0": 0,
+          "1": 1,
+          "2": 0,
+          "3": 1,
+          "4": 0,
+          "5": 0,
+          "6": 0,
+          "7": 1,
+          "8": 0,
+          "9": 1,
+          "10": 2,
+          "11": 0,
+          "12": 0,
+          "13": 1,
+          "14": 0,
+          "15": null,
+          "16": null,
+          "17": null,
+          "18": null,
+          "19": null
+        },
+        "conflict_edges": [],
+        "current_node": 14,
+        "assigned_color": 0,
+        "neighbor_colors": [
+          1
+        ]
+      }
+    },
+    {
+      "step": 17,
+      "event_type": "COLOR_ASSIGNED",
+      "mutations": {
+        "phase": "awal",
+        "action_narrative": "Jl. Sriwedani dapat Slot 1. Slot yang sudah dipakai tetangganya: belum ada.",
+        "colors": {
+          "0": 0,
+          "1": 1,
+          "2": 0,
+          "3": 1,
+          "4": 0,
+          "5": 0,
+          "6": 0,
+          "7": 1,
+          "8": 0,
+          "9": 1,
+          "10": 2,
+          "11": 0,
+          "12": 0,
+          "13": 1,
+          "14": 0,
+          "15": 0,
+          "16": null,
+          "17": null,
+          "18": null,
+          "19": null
+        },
+        "conflict_edges": [],
+        "current_node": 15,
+        "assigned_color": 0,
+        "neighbor_colors": []
+      }
+    },
+    {
+      "step": 18,
+      "event_type": "COLOR_ASSIGNED",
+      "mutations": {
+        "phase": "awal",
+        "action_narrative": "Jl. Tilarso dapat Slot 1. Slot yang sudah dipakai tetangganya: Slot 2.",
+        "colors": {
+          "0": 0,
+          "1": 1,
+          "2": 0,
+          "3": 1,
+          "4": 0,
+          "5": 0,
+          "6": 0,
+          "7": 1,
+          "8": 0,
+          "9": 1,
+          "10": 2,
+          "11": 0,
+          "12": 0,
+          "13": 1,
+          "14": 0,
+          "15": 0,
+          "16": 0,
+          "17": null,
+          "18": null,
+          "19": null
+        },
+        "conflict_edges": [],
+        "current_node": 16,
+        "assigned_color": 0,
+        "neighbor_colors": [
+          1
+        ]
+      }
+    },
+    {
+      "step": 19,
+      "event_type": "COLOR_ASSIGNED",
+      "mutations": {
+        "phase": "awal",
+        "action_narrative": "Jl. Limaran dapat Slot 1. Slot yang sudah dipakai tetangganya: Slot 2.",
+        "colors": {
+          "0": 0,
+          "1": 1,
+          "2": 0,
+          "3": 1,
+          "4": 0,
+          "5": 0,
+          "6": 0,
+          "7": 1,
+          "8": 0,
+          "9": 1,
+          "10": 2,
+          "11": 0,
+          "12": 0,
+          "13": 1,
+          "14": 0,
+          "15": 0,
+          "16": 0,
+          "17": 0,
+          "18": null,
+          "19": null
+        },
+        "conflict_edges": [],
+        "current_node": 17,
+        "assigned_color": 0,
+        "neighbor_colors": [
+          1
+        ]
+      }
+    },
+    {
+      "step": 20,
+      "event_type": "COLOR_ASSIGNED",
+      "mutations": {
+        "phase": "awal",
+        "action_narrative": "Titik Nol Kilometer Yogyakarta dapat Slot 3. Slot yang sudah dipakai tetangganya: Slot 1, Slot 2.",
+        "colors": {
+          "0": 0,
+          "1": 1,
+          "2": 0,
+          "3": 1,
+          "4": 0,
+          "5": 0,
+          "6": 0,
+          "7": 1,
+          "8": 0,
+          "9": 1,
+          "10": 2,
+          "11": 0,
+          "12": 0,
+          "13": 1,
+          "14": 0,
+          "15": 0,
+          "16": 0,
+          "17": 0,
+          "18": 2,
+          "19": null
+        },
+        "conflict_edges": [],
+        "current_node": 18,
+        "assigned_color": 2,
+        "neighbor_colors": [
+          0,
+          1
+        ]
+      }
+    },
+    {
+      "step": 21,
+      "event_type": "COLOR_ASSIGNED",
+      "mutations": {
+        "phase": "awal",
+        "action_narrative": "Jl. Panembahan Senopati dapat Slot 2. Slot yang sudah dipakai tetangganya: Slot 1, Slot 3.",
+        "colors": {
+          "0": 0,
+          "1": 1,
+          "2": 0,
+          "3": 1,
+          "4": 0,
+          "5": 0,
+          "6": 0,
+          "7": 1,
+          "8": 0,
+          "9": 1,
+          "10": 2,
+          "11": 0,
+          "12": 0,
+          "13": 1,
+          "14": 0,
+          "15": 0,
+          "16": 0,
+          "17": 0,
+          "18": 2,
+          "19": 1
+        },
+        "conflict_edges": [],
+        "current_node": 19,
+        "assigned_color": 1,
+        "neighbor_colors": [
+          0,
+          2
+        ]
+      }
+    },
+    {
+      "step": 22,
+      "event_type": "DONE",
+      "mutations": {
+        "phase": "awal",
+        "action_narrative": "Greedy selesai: 3 slot dipakai, konflik tersisa 0.",
+        "colors": {
+          "0": 0,
+          "1": 1,
+          "2": 0,
+          "3": 1,
+          "4": 0,
+          "5": 0,
+          "6": 0,
+          "7": 1,
+          "8": 0,
+          "9": 1,
+          "10": 2,
+          "11": 0,
+          "12": 0,
+          "13": 1,
+          "14": 0,
+          "15": 0,
+          "16": 0,
+          "17": 0,
+          "18": 2,
+          "19": 1
+        },
+        "conflict_edges": [],
+        "num_colors": 3,
+        "conflicts": 0,
+        "slot_sizes": {
+          "0": 12,
+          "1": 6,
+          "2": 2
+        }
+      }
+    },
+    {
+      "step": 23,
+      "event_type": "EVENT_SMOKE",
+      "mutations": {
+        "phase": "event",
+        "action_narrative": "Asap sate muncul di Pasar Sore Malioboro (Slot 2), menyebar 300 m. Titik dalam jangkauan: Jl. BeringHarjo (89 m), Jl. Pabringan (110 m), Hamzah Batik (170 m), Teras Malioboro 1 (199 m), Jl. Margo Mulyo (208 m), Kawasan Wisata Malioboro (279 m). 3 titik baru dianggap bentrok dengannya.",
+        "colors": {
+          "0": 0,
+          "1": 1,
+          "2": 0,
+          "3": 1,
+          "4": 0,
+          "5": 0,
+          "6": 0,
+          "7": 1,
+          "8": 0,
+          "9": 1,
+          "10": 2,
+          "11": 0,
+          "12": 0,
+          "13": 1,
+          "14": 0,
+          "15": 0,
+          "16": 0,
+          "17": 0,
+          "18": 2,
+          "19": 1
+        },
+        "conflict_edges": [
+          [
+            0,
+            9
+          ],
+          [
+            7,
+            9
+          ],
+          [
+            9,
+            13
+          ]
+        ],
+        "target_node": 9,
+        "radius": 300,
+        "reach": {
+          "6": 89.0,
+          "10": 110.0,
+          "8": 170.0,
+          "7": 199.0,
+          "13": 208.0,
+          "0": 279.0
+        },
+        "new_conflicts": [
+          0,
+          7,
+          13
+        ],
+        "slots_before": 3
+      }
+    },
+    {
+      "step": 24,
+      "event_type": "UNCOLOR",
+      "mutations": {
+        "phase": "event",
+        "action_narrative": "Slot dicabut dari: Teras Malioboro 1, Jl. Margo Mulyo (sama-sama Slot 2 dengan Pasar Sore Malioboro).",
+        "colors": {
+          "0": 0,
+          "1": 1,
+          "2": 0,
+          "3": 1,
+          "4": 0,
+          "5": 0,
+          "6": 0,
+          "7": null,
+          "8": 0,
+          "9": 1,
+          "10": 2,
+          "11": 0,
+          "12": 0,
+          "13": null,
+          "14": 0,
+          "15": 0,
+          "16": 0,
+          "17": 0,
+          "18": 2,
+          "19": 1
+        },
+        "conflict_edges": [
+          [
+            0,
+            9
+          ],
+          [
+            7,
+            9
+          ],
+          [
+            9,
+            13
+          ]
+        ],
+        "uncolored": [
+          7,
+          13
+        ]
+      }
+    },
+    {
+      "step": 25,
+      "event_type": "RECOLOR",
+      "mutations": {
+        "phase": "event",
+        "action_narrative": "Teras Malioboro 1 dapat Slot 3. Slot yang sudah dipakai tetangganya: Slot 1, Slot 2.",
+        "colors": {
+          "0": 0,
+          "1": 1,
+          "2": 0,
+          "3": 1,
+          "4": 0,
+          "5": 0,
+          "6": 0,
+          "7": 2,
+          "8": 0,
+          "9": 1,
+          "10": 2,
+          "11": 0,
+          "12": 0,
+          "13": null,
+          "14": 0,
+          "15": 0,
+          "16": 0,
+          "17": 0,
+          "18": 2,
+          "19": 1
+        },
+        "conflict_edges": [
+          [
+            0,
+            9
+          ],
+          [
+            7,
+            9
+          ],
+          [
+            9,
+            13
+          ]
+        ],
+        "current_node": 7,
+        "assigned_color": 2,
+        "neighbor_colors": [
+          0,
+          1
+        ]
+      }
+    },
+    {
+      "step": 26,
+      "event_type": "RECOLOR",
+      "mutations": {
+        "phase": "event",
+        "action_narrative": "Jl. Margo Mulyo dapat Slot 4. Slot yang sudah dipakai tetangganya: Slot 1, Slot 2, Slot 3.",
+        "colors": {
+          "0": 0,
+          "1": 1,
+          "2": 0,
+          "3": 1,
+          "4": 0,
+          "5": 0,
+          "6": 0,
+          "7": 2,
+          "8": 0,
+          "9": 1,
+          "10": 2,
+          "11": 0,
+          "12": 0,
+          "13": 3,
+          "14": 0,
+          "15": 0,
+          "16": 0,
+          "17": 0,
+          "18": 2,
+          "19": 1
+        },
+        "conflict_edges": [
+          [
+            0,
+            9
+          ],
+          [
+            7,
+            9
+          ],
+          [
+            9,
+            13
+          ]
+        ],
+        "current_node": 13,
+        "assigned_color": 3,
+        "neighbor_colors": [
+          0,
+          1,
+          2
+        ]
+      }
+    },
+    {
+      "step": 27,
+      "event_type": "DONE",
+      "mutations": {
+        "phase": "event",
+        "action_narrative": "Selesai setelah asap: 4 slot dipakai, konflik tersisa 0.",
+        "colors": {
+          "0": 0,
+          "1": 1,
+          "2": 0,
+          "3": 1,
+          "4": 0,
+          "5": 0,
+          "6": 0,
+          "7": 2,
+          "8": 0,
+          "9": 1,
+          "10": 2,
+          "11": 0,
+          "12": 0,
+          "13": 3,
+          "14": 0,
+          "15": 0,
+          "16": 0,
+          "17": 0,
+          "18": 2,
+          "19": 1
+        },
+        "conflict_edges": [
+          [
+            0,
+            9
+          ],
+          [
+            7,
+            9
+          ],
+          [
+            9,
+            13
+          ]
+        ],
+        "num_colors": 4,
+        "conflicts": 0,
+        "slot_sizes": {
+          "0": 12,
+          "1": 4,
+          "2": 3,
+          "3": 1
+        }
+      }
+    }
+  ]
+}
