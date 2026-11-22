@@ -117,7 +117,8 @@ button:focus-visible, select:focus-visible, input:focus-visible { outline: 3px s
 }
 
 /* ===== Isi SVG ===== */
-.edge { stroke: var(--edge); stroke-width: 2.5; }
+.edge { fill: none; stroke: var(--edge); stroke-width: 3; stroke-linejoin: round; stroke-linecap: round; }
+.edge:hover { stroke: var(--accent); }
 .edge-w { font-size: 10px; fill: var(--muted); text-anchor: middle; paint-order: stroke; stroke: var(--card); stroke-width: 3px; }
 .node { stroke: var(--ink); stroke-width: 2; }
 .node.uncolored { stroke-dasharray: 4 3; }
