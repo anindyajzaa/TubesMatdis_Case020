@@ -5,7 +5,7 @@
     "description": "Graph Coloring / Conflict Scheduling. Node = titik di sekitar Malioboro, warna = time-slot giliran pelepasan gelombang pengunjung. Dua titik yang terhubung jalan tidak boleh satu slot. Bobot edge = jarak jalan (meter). Event: asap sate menutup visibilitas di satu titik dan menyebar sejauh radius tertentu.",
     "algorithm": "GreedyColoring"
   },
-  "total_steps": 27,
+  "total_steps": 28,
   "initial_topology": {
     "nodes": [
       {
@@ -211,6 +211,11 @@
         "weight": 200.0
       },
       {
+        "from": 6,
+        "to": 1,
+        "weight": 110.0
+      },
+      {
         "from": 8,
         "to": 9,
         "weight": 170.0
@@ -246,6 +251,16 @@
         "weight": 84.0
       },
       {
+        "from": 10,
+        "to": 11,
+        "weight": 350.0
+      },
+      {
+        "from": 11,
+        "to": 16,
+        "weight": 110.0
+      },
+      {
         "from": 13,
         "to": 14,
         "weight": 260.0
@@ -254,6 +269,11 @@
         "from": 13,
         "to": 8,
         "weight": 38.0
+      },
+      {
+        "from": 16,
+        "to": 17,
+        "weight": 190.0
       },
       {
         "from": 17,
@@ -303,7 +323,7 @@
       "event_type": "INITIALIZATION",
       "mutations": {
         "phase": "awal",
-        "action_narrative": "Mulai Greedy: 20 titik dan 25 jalan, semua titik belum punya slot.",
+        "action_narrative": "Mulai Greedy: 20 titik dan 29 jalan, semua titik belum punya slot.",
         "colors": {
           "0": null,
           "1": null,
@@ -328,7 +348,7 @@
         },
         "conflict_edges": [],
         "total_nodes": 20,
-        "total_edges": 25
+        "total_edges": 29
       }
     },
     {
@@ -546,7 +566,7 @@
       "event_type": "COLOR_ASSIGNED",
       "mutations": {
         "phase": "awal",
-        "action_narrative": "Jl. BeringHarjo dapat Slot 1. Slot yang sudah dipakai tetangganya: belum ada.",
+        "action_narrative": "Jl. BeringHarjo dapat Slot 1. Slot yang sudah dipakai tetangganya: Slot 2.",
         "colors": {
           "0": 0,
           "1": 1,
@@ -572,7 +592,9 @@
         "conflict_edges": [],
         "current_node": 6,
         "assigned_color": 0,
-        "neighbor_colors": []
+        "neighbor_colors": [
+          1
+        ]
       }
     },
     {
@@ -725,7 +747,7 @@
       "event_type": "COLOR_ASSIGNED",
       "mutations": {
         "phase": "awal",
-        "action_narrative": "Jl. Mojar dapat Slot 1. Slot yang sudah dipakai tetangganya: Slot 2.",
+        "action_narrative": "Jl. Mojar dapat Slot 1. Slot yang sudah dipakai tetangganya: Slot 2, Slot 3.",
         "colors": {
           "0": 0,
           "1": 1,
@@ -752,7 +774,8 @@
         "current_node": 11,
         "assigned_color": 0,
         "neighbor_colors": [
-          1
+          1,
+          2
         ]
       }
     },
@@ -904,7 +927,7 @@
       "event_type": "COLOR_ASSIGNED",
       "mutations": {
         "phase": "awal",
-        "action_narrative": "Jl. Tilarso dapat Slot 1. Slot yang sudah dipakai tetangganya: Slot 2.",
+        "action_narrative": "Jl. Tilarso dapat Slot 3. Slot yang sudah dipakai tetangganya: Slot 1, Slot 2.",
         "colors": {
           "0": 0,
           "1": 1,
@@ -922,15 +945,16 @@
           "13": 1,
           "14": 0,
           "15": 0,
-          "16": 0,
+          "16": 2,
           "17": null,
           "18": null,
           "19": null
         },
         "conflict_edges": [],
         "current_node": 16,
-        "assigned_color": 0,
+        "assigned_color": 2,
         "neighbor_colors": [
+          0,
           1
         ]
       }
@@ -940,7 +964,7 @@
       "event_type": "COLOR_ASSIGNED",
       "mutations": {
         "phase": "awal",
-        "action_narrative": "Jl. Limaran dapat Slot 1. Slot yang sudah dipakai tetangganya: Slot 2.",
+        "action_narrative": "Jl. Limaran dapat Slot 1. Slot yang sudah dipakai tetangganya: Slot 2, Slot 3.",
         "colors": {
           "0": 0,
           "1": 1,
@@ -958,7 +982,7 @@
           "13": 1,
           "14": 0,
           "15": 0,
-          "16": 0,
+          "16": 2,
           "17": 0,
           "18": null,
           "19": null
@@ -967,7 +991,8 @@
         "current_node": 17,
         "assigned_color": 0,
         "neighbor_colors": [
-          1
+          1,
+          2
         ]
       }
     },
@@ -994,7 +1019,7 @@
           "13": 1,
           "14": 0,
           "15": 0,
-          "16": 0,
+          "16": 2,
           "17": 0,
           "18": 2,
           "19": null
@@ -1031,7 +1056,7 @@
           "13": 1,
           "14": 0,
           "15": 0,
-          "16": 0,
+          "16": 2,
           "17": 0,
           "18": 2,
           "19": 1
@@ -1068,7 +1093,7 @@
           "13": 1,
           "14": 0,
           "15": 0,
-          "16": 0,
+          "16": 2,
           "17": 0,
           "18": 2,
           "19": 1
@@ -1077,9 +1102,9 @@
         "num_colors": 3,
         "conflicts": 0,
         "slot_sizes": {
-          "0": 12,
+          "0": 11,
           "1": 6,
-          "2": 2
+          "2": 3
         }
       }
     },
@@ -1088,7 +1113,7 @@
       "event_type": "EVENT_SMOKE",
       "mutations": {
         "phase": "event",
-        "action_narrative": "Asap sate muncul di Pasar Sore Malioboro (Slot 2), menyebar 300 m. Titik dalam jangkauan: Jl. BeringHarjo (89 m), Jl. Pabringan (110 m), Hamzah Batik (170 m), Teras Malioboro 1 (199 m), Jl. Margo Mulyo (208 m), Kawasan Wisata Malioboro (279 m). 3 titik baru dianggap bentrok dengannya.",
+        "action_narrative": "Asap sate muncul di Pasar Sore Malioboro (Slot 2), menyebar 300 m. Titik dalam jangkauan: Jl. BeringHarjo (89 m), Jl. Pabringan (110 m), Hamzah Batik (170 m), Jl. Remujung (199 m), Teras Malioboro 1 (199 m), Jl. Margo Mulyo (208 m), Kawasan Wisata Malioboro (279 m). 4 titik baru dianggap bentrok dengannya.",
         "colors": {
           "0": 0,
           "1": 1,
@@ -1106,7 +1131,7 @@
           "13": 1,
           "14": 0,
           "15": 0,
-          "16": 0,
+          "16": 2,
           "17": 0,
           "18": 2,
           "19": 1
@@ -1114,6 +1139,10 @@
         "conflict_edges": [
           [
             0,
+            9
+          ],
+          [
+            1,
             9
           ],
           [
@@ -1131,12 +1160,14 @@
           "6": 89.0,
           "10": 110.0,
           "8": 170.0,
+          "1": 199.0,
           "7": 199.0,
           "13": 208.0,
           "0": 279.0
         },
         "new_conflicts": [
           0,
+          1,
           7,
           13
         ],
@@ -1148,10 +1179,10 @@
       "event_type": "UNCOLOR",
       "mutations": {
         "phase": "event",
-        "action_narrative": "Slot dicabut dari: Teras Malioboro 1, Jl. Margo Mulyo (sama-sama Slot 2 dengan Pasar Sore Malioboro).",
+        "action_narrative": "Slot dicabut dari: Jl. Remujung, Teras Malioboro 1, Jl. Margo Mulyo (sama-sama Slot 2 dengan Pasar Sore Malioboro).",
         "colors": {
           "0": 0,
-          "1": 1,
+          "1": null,
           "2": 0,
           "3": 1,
           "4": 0,
@@ -1166,7 +1197,7 @@
           "13": null,
           "14": 0,
           "15": 0,
-          "16": 0,
+          "16": 2,
           "17": 0,
           "18": 2,
           "19": 1
@@ -1174,6 +1205,10 @@
         "conflict_edges": [
           [
             0,
+            9
+          ],
+          [
+            1,
             9
           ],
           [
@@ -1186,6 +1221,7 @@
           ]
         ],
         "uncolored": [
+          1,
           7,
           13
         ]
@@ -1196,10 +1232,64 @@
       "event_type": "RECOLOR",
       "mutations": {
         "phase": "event",
+        "action_narrative": "Jl. Remujung dapat Slot 3. Slot yang sudah dipakai tetangganya: Slot 1, Slot 2.",
+        "colors": {
+          "0": 0,
+          "1": 2,
+          "2": 0,
+          "3": 1,
+          "4": 0,
+          "5": 0,
+          "6": 0,
+          "7": null,
+          "8": 0,
+          "9": 1,
+          "10": 2,
+          "11": 0,
+          "12": 0,
+          "13": null,
+          "14": 0,
+          "15": 0,
+          "16": 2,
+          "17": 0,
+          "18": 2,
+          "19": 1
+        },
+        "conflict_edges": [
+          [
+            0,
+            9
+          ],
+          [
+            1,
+            9
+          ],
+          [
+            7,
+            9
+          ],
+          [
+            9,
+            13
+          ]
+        ],
+        "current_node": 1,
+        "assigned_color": 2,
+        "neighbor_colors": [
+          0,
+          1
+        ]
+      }
+    },
+    {
+      "step": 26,
+      "event_type": "RECOLOR",
+      "mutations": {
+        "phase": "event",
         "action_narrative": "Teras Malioboro 1 dapat Slot 3. Slot yang sudah dipakai tetangganya: Slot 1, Slot 2.",
         "colors": {
           "0": 0,
-          "1": 1,
+          "1": 2,
           "2": 0,
           "3": 1,
           "4": 0,
@@ -1214,7 +1304,7 @@
           "13": null,
           "14": 0,
           "15": 0,
-          "16": 0,
+          "16": 2,
           "17": 0,
           "18": 2,
           "19": 1
@@ -1222,6 +1312,10 @@
         "conflict_edges": [
           [
             0,
+            9
+          ],
+          [
+            1,
             9
           ],
           [
@@ -1242,14 +1336,14 @@
       }
     },
     {
-      "step": 26,
+      "step": 27,
       "event_type": "RECOLOR",
       "mutations": {
         "phase": "event",
         "action_narrative": "Jl. Margo Mulyo dapat Slot 4. Slot yang sudah dipakai tetangganya: Slot 1, Slot 2, Slot 3.",
         "colors": {
           "0": 0,
-          "1": 1,
+          "1": 2,
           "2": 0,
           "3": 1,
           "4": 0,
@@ -1264,7 +1358,7 @@
           "13": 3,
           "14": 0,
           "15": 0,
-          "16": 0,
+          "16": 2,
           "17": 0,
           "18": 2,
           "19": 1
@@ -1272,6 +1366,10 @@
         "conflict_edges": [
           [
             0,
+            9
+          ],
+          [
+            1,
             9
           ],
           [
@@ -1293,14 +1391,14 @@
       }
     },
     {
-      "step": 27,
+      "step": 28,
       "event_type": "DONE",
       "mutations": {
         "phase": "event",
         "action_narrative": "Selesai setelah asap: 4 slot dipakai, konflik tersisa 0.",
         "colors": {
           "0": 0,
-          "1": 1,
+          "1": 2,
           "2": 0,
           "3": 1,
           "4": 0,
@@ -1315,7 +1413,7 @@
           "13": 3,
           "14": 0,
           "15": 0,
-          "16": 0,
+          "16": 2,
           "17": 0,
           "18": 2,
           "19": 1
@@ -1323,6 +1421,10 @@
         "conflict_edges": [
           [
             0,
+            9
+          ],
+          [
+            1,
             9
           ],
           [
@@ -1337,9 +1439,9 @@
         "num_colors": 4,
         "conflicts": 0,
         "slot_sizes": {
-          "0": 12,
-          "1": 4,
-          "2": 3,
+          "0": 11,
+          "1": 3,
+          "2": 5,
           "3": 1
         }
       }

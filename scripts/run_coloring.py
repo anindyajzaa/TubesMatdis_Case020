@@ -7,6 +7,7 @@ Setelah itu buka visualizer/index.html di browser.
 import json
 import statistics
 import time
+import yaml
 
 from algorithms.coloring.dsatur import DSATUR
 from algorithms.coloring.greedy_coloring import GreedyColoring
@@ -24,6 +25,10 @@ ALGOS = [
 ]
 REPEAT = 200  # jumlah ulangan untuk ukur waktu (diambil median)
 
+def load_edges():
+    """Daftar edge untuk web, langsung dari YAML (bawa kunci 'via' = belokan jalan)."""
+    raw = yaml.safe_load(SCENARIO.read_text(encoding="utf-8"))
+    return [{"from": e["from"], "to": e["to"], "weight": e["weight"], "via": e.get("via", [])} for e in raw["edges"]]
 
 def run_once(cls, loader, node, radius):
     """Jalankan 1 algoritma: pewarnaan awal + event asap. Return solver, info, waktu (ms)."""
@@ -130,7 +135,7 @@ def main():
     payload = {
         "meta": meta,
         "nodes": topo["nodes"],
-        "edges": topo["edges"],
+        "edges": load_edges(),
         "event": {"node": node, "radius": radius, "description": event["description"]},
         "algorithms": algos_out,
         "sweep": rows,
