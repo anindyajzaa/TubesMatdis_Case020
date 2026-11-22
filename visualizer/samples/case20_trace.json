@@ -534,8 +534,8 @@
           13
         ],
         "conflicts": 0,
-        "ms_awal": 0.7404,
-        "ms_event": 0.4381,
+        "ms_awal": 0.9529,
+        "ms_event": 0.5296,
         "sizes_awal": {
           "0": 11,
           "1": 6,
@@ -1620,8 +1620,8 @@
           13
         ],
         "conflicts": 0,
-        "ms_awal": 1.577,
-        "ms_event": 0.5916,
+        "ms_awal": 1.358,
+        "ms_event": 0.5188,
         "sizes_awal": {
           "0": 8,
           "1": 5,

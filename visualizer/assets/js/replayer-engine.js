@@ -34,9 +34,8 @@
     if (parent) parent.appendChild(e);
     return e;
   }
-  const byId = {}, deg = {};
-  D.nodes.forEach((n) => { byId[n.id] = n; deg[n.id] = 0; });
-  D.edges.forEach((e) => { deg[e.from]++; deg[e.to]++; });
+  const byId = {};
+  D.nodes.forEach((n) => (byId[n.id] = n));
   const X = (id) => byId[id].pos[0] * 10;        // pos di YAML = pixel / 10
   const Y = (id) => 630 - byId[id].pos[1] * 10;  // y dibalik (SVG: atas = 0)
 
@@ -54,6 +53,52 @@
     if (cur) lines.push(cur);
     return lines;
   }
+
+  // ---------- tata letak (dihitung sekali, dipakai kedua graf) ----------
+  // rute 1 edge: titik awal -> belokan jalan ('via' dari YAML) -> titik akhir
+  const routeOf = (e) => [
+    [X(e.from), Y(e.from)],
+    ...(e.via || []).map(([x, y]) => [x * 10, 630 - y * 10]),
+    [X(e.to), Y(e.to)],
+  ];
+
+  // 'placed' = kotak yang sudah terpakai [x0, y0, x1, y1], supaya angka jarak tidak menimpa apa pun
+  const placed = [];
+  const hit = (a, b) => a[0] < b[2] && b[0] < a[2] && a[1] < b[3] && b[1] < a[3];
+
+  // 1) label nama tiap titik
+  const nodeLabel = {};
+  D.nodes.forEach((n) => {
+    const lines = wrap(n.label, 18), side = SIDE[n.id] || "b", x = X(n.id), y = Y(n.id);
+    const w = Math.max(...lines.map((s) => s.length)) * 6.3;
+    const anchor = side === "l" ? "end" : side === "r" ? "start" : "middle";
+    const lx = side === "l" ? x - R - 5 : side === "r" ? x + R + 5 : x;
+    const ly = side === "t" ? y - R - 8 - (lines.length - 1) * 14
+             : side === "b" ? y + R + 16
+             : y + 4 - (lines.length - 1) * 7;
+    const x0 = side === "l" ? lx - w : side === "r" ? lx : lx - w / 2;
+    nodeLabel[n.id] = { lines, anchor, lx, ly };
+    placed.push([x0, ly - 11, x0 + w, ly + (lines.length - 1) * 14 + 4]);   // kotak label
+    placed.push([x - R - 4, y - R - 4, x + R + 4, y + R + 4]);               // kotak titik
+  });
+
+  // 2) angka jarak: coba di tengah tiap ruas rute (dari ruas terakhir), geser sedikit ke samping kalau sudah terisi
+  const edgeLabel = D.edges.map((e) => {
+    const pts = routeOf(e), text = String(e.weight), w = text.length * 6 + 6, h = 12, cands = [];
+    for (let i = pts.length - 2; i >= 0; i--) {
+      const [ax, ay] = pts[i], [bx, by] = pts[i + 1];
+      const len = Math.hypot(bx - ax, by - ay);
+      if (len < 24) continue;
+      const nx = -(by - ay) / len, ny = (bx - ax) / len;
+      [0.5, 0.3, 0.7].forEach((f) => [0, 14, -14].forEach((o) =>
+        cands.push([ax + (bx - ax) * f + nx * o, ay + (by - ay) * f + ny * o])));
+    }
+    if (!cands.length) cands.push([(pts[0][0] + pts[1][0]) / 2, (pts[0][1] + pts[1][1]) / 2]);
+    const box = ([x, y]) => [x - w / 2, y - h / 2, x + w / 2, y + h / 2];
+    const [x, y] = cands.find((c) => !placed.some((b) => hit(b, box(c)))) || cands[0];
+    placed.push(box([x, y]));
+    return { x, y, text };
+  });
 
   // ---------- header & legenda ----------
   $("judul").textContent = D.meta.title;
@@ -98,14 +143,14 @@
 
     const halo = el("circle", { class: "halo", r: 40, display: "none" }, gHalo);
 
+    // garis jalan mengikuti rute di peta (arahkan mouse ke garis untuk melihat nama jalan & jaraknya)
     D.edges.forEach((e) => {
-      el("line", { class: "edge", x1: X(e.from), y1: Y(e.from), x2: X(e.to), y2: Y(e.to) }, gEdge);
-      // angka jarak: di tengah garis, tapi untuk titik hub (banyak jalan) digeser mendekati ujung yang sepi
-      // supaya angka dari garis-garis yang menumpuk di hub tidak saling menimpa
-      const lo = deg[e.from] <= deg[e.to] ? e.from : e.to, hi = lo === e.from ? e.to : e.from;
-      const f = deg[hi] >= 5 && deg[lo] < 5 ? 0.3 : 0.5;
-      const t = el("text", { class: "edge-w", x: X(lo) + f * (X(hi) - X(lo)), y: Y(lo) + f * (Y(hi) - Y(lo)) + 3 }, gEdge);
-      t.textContent = e.weight;
+      const pl = el("polyline", { class: "edge", points: routeOf(e).map((p) => p.join(",")).join(" ") }, gEdge);
+      el("title", {}, pl).textContent = byId[e.from].label + " - " + byId[e.to].label + ": " + e.weight + " m";
+    });
+    edgeLabel.forEach((l) => {
+      const t = el("text", { class: "edge-w", x: l.x, y: l.y + 3.5 }, gEdge);
+      t.textContent = l.text;
     });
 
     const reachRings = {};
@@ -121,17 +166,11 @@
       const num = el("text", { class: "node-num", x: X(n.id), y: Y(n.id) }, gNode);
       nodeEls[n.id] = { c, num };
 
-      // label (maksimal 2-3 baris)
-      const lines = wrap(n.label, 18), side = SIDE[n.id] || "b";
-      const x = X(n.id), y = Y(n.id);
-      const anchor = side === "l" ? "end" : side === "r" ? "start" : "middle";
-      const lx = side === "l" ? x - R - 5 : side === "r" ? x + R + 5 : x;
-      let ly = side === "t" ? y - R - 8 - (lines.length - 1) * 14
-             : side === "b" ? y + R + 16
-             : y + 4 - (lines.length - 1) * 7;
-      const t = el("text", { class: "node-label", x: lx, y: ly, "text-anchor": anchor }, gLabel);
-      lines.forEach((ln, i) => {
-        const s = el("tspan", { x: lx, dy: i === 0 ? 0 : 14 }, t);
+      // label nama titik (posisi sudah dihitung di atas)
+      const L = nodeLabel[n.id];
+      const t = el("text", { class: "node-label", x: L.lx, y: L.ly, "text-anchor": L.anchor }, gLabel);
+      L.lines.forEach((ln, i) => {
+        const s = el("tspan", { x: L.lx, dy: i === 0 ? 0 : 14 }, t);
         s.textContent = ln;
       });
     });
