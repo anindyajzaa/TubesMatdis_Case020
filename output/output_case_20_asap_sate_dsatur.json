@@ -2,7 +2,7 @@
   "metadata": {
     "case_id": "case_20_asap_sate",
     "title": "Pengaturan Giliran Evakuasi: Asap Sate di Kawasan Malioboro",
-    "description": "Graph Coloring / Conflict Scheduling. Node = titik di sekitar Malioboro, warna = time-slot giliran pelepasan gelombang pengunjung. Dua titik yang terhubung jalan tidak boleh satu slot. Bobot edge = jarak jalan (meter). Event: asap sate menutup visibilitas di satu titik dan menyebar sejauh radius tertentu.",
+    "description": "Graph Coloring / Conflict Scheduling. Node = lokasi tukang sate di sekitar Malioboro, warna = time-slot giliran membakar sate. Dua titik yang terhubung jalan tidak boleh satu slot agar asap tidak menumpuk. Bobot edge = jarak jalan (meter). Event: asap sate menutup visibilitas di satu titik dan menyebar sejauh radius tertentu.",
     "algorithm": "DSATUR"
   },
   "total_steps": 27,
